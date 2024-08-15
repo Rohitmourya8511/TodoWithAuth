@@ -1,0 +1,40 @@
+# Compiled source files
+*.dll
+*.exe
+*.log
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# DotNet specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+_ReSharper.Caches
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Others
+*.vs/

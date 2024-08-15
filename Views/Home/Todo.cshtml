@@ -1,0 +1,66 @@
+﻿@model TodoWithAuth.Models.TodoViewModel
+
+@{
+    ViewData["Title"] = "Todo";
+}
+
+<h1>Todo List</h1>
+
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label for="newTodo">New Todo</label>
+        <input type="text" class="form-control" id="newTodo" name="NewTodo.Text" placeholder="Enter a new todo item" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Sr.No.</th>
+            <th>Todos</th>
+            <th>Completed</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Todos)
+        {
+           <tr class="@((item.Completed ? "completed-todo" : ""))">
+                <td>@item.Id</td>
+                <td >@item.Text</td>
+                <td>
+                    @if (item.Completed)
+                    {
+                        <form asp-action="Incomplete" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-warning">Mark Incomplete</button>
+                        </form>
+                    }
+                    @if (!item.Completed)
+                    {
+                        <form asp-action="Complete" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-success">Mark Complete</button>
+                        </form>
+                    }
+                </td>
+                <td>
+                   
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<style>
+    .completed-todo td {
+        text-decoration: line-through;
+    }
+</style>
+
